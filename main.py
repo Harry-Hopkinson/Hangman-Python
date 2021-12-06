@@ -9,12 +9,14 @@ lives = 6
 shieldWord = ""
 tries = 0
 
-for i in range(len(randomWord)):
+for i in range(len(randomWord) - 1):
     shieldWord += "*"
 
 print(randomWord), print(shieldWord)
 
-print(hangManPictureStart)
+for line in hangManPictureStart:
+    print(line)
+
 print("Welcome to Hangman!")
 print("The word has", len(randomWord) - 1, "letters")
 print(randomWord)
@@ -24,14 +26,21 @@ while True:
     print(shieldWord)
     print("Guess a letter:")
     guess = input()
-    if guess in randomWord:
+    
+    if guess == randomWord:
+        print("You win!")
+        print("The word was", randomWord)
+        print("It took you", tries, "tries")
+        break
+
+    elif guess in randomWord:
         print("Correct!")
         tries += 1
         for i in range(len(randomWord)):
             if randomWord[i] == guess:
                 shieldWord = shieldWord[:i] + guess + shieldWord[i + 1:]
         print(shieldWord)
-    
+       
     else:
         print("Wrong! That letter is not in the word!")
         print("You lose a life")
@@ -39,36 +48,36 @@ while True:
         tries += 1
 
         if lives == 0:
-            print(hangManPictureSeventh)
+            for line in hangManPictureSeventh:
+                print(line)
             print("You lose!")
             print("The word was", randomWord)
             break
         
         elif lives == 1:
-            print(hangManPictureSixth)
+            for line in hangManPictureSixth:
+                print(line)
             print("You have", lives, "life left")
             
         elif lives == 2:
-            print(hangManPictureFifth)
+            for line in hangManPictureFifth:
+                print(line)
             print("You have", lives, "life left")
         
         elif lives == 3:
-            print(hangManPictureFourth)
+            for line in hangManPictureFourth:
+                print(line)
             print("You have", lives, "life left")
         
         elif lives == 4:
-            print(hangManPictureThird)
+            for line in hangManPictureThird:
+                print(line)
             print("You have", lives, "life left")
         
         elif lives == 5:
-            print(hangManPictureSecond)
+            for line in hangManPictureSecond:
+                print(line)
             print("You have", lives, "life left")
-    
-    if shieldWord == randomWord:
-        print("You win!")
-        print("The word was", randomWord)
-        print("It took you", tries, "tries")
-        break
 
 print("Thanks for playing!")
 time.sleep(2)
