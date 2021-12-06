@@ -3,6 +3,7 @@ import random
 from hangManPicture import *
 import time
 
+### Variables ###
 file = open("WordList.txt", "r")
 randomWord = random.choice(file.readlines())
 lives = 6
@@ -28,6 +29,12 @@ while True:
     print("Guess a letter:")
     guess = input()
 
+    if combinedGuess == randomWord:
+        print("You win!")
+        print("The word was", randomWord)
+        print("It took you", tries, "tries")
+        break
+
     if guess in randomWord:
         print("Correct!")
         combinedGuess.append(guess)
@@ -37,12 +44,13 @@ while True:
                 shieldWord = shieldWord[:i] + guess + shieldWord[i + 1:]
         print(shieldWord)
     
-    elif combinedGuess == randomWord:
-        print("You win!")
-        print("The word was", randomWord)
-        print("It took you", tries, "tries")
-        break
-       
+    elif guess in combinedGuess:
+        print("You already guessed that letter!")
+        tries += 1
+        print(shieldWord)
+
+    
+    ### If the letter is not in the word ###   
     else:
         print("Wrong! That letter is not in the word!")
         print("You lose a life")
