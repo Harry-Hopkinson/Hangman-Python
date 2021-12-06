@@ -7,6 +7,7 @@ file = open("WordList.txt", "r")
 randomWord = random.choice(file.readlines())
 lives = 6
 shieldWord = ""
+tries = 0
 
 for i in range(len(randomWord)):
     shieldWord += "*"
@@ -25,6 +26,7 @@ while True:
     guess = input()
     if guess in randomWord:
         print("Correct!")
+        tries += 1
         for i in range(len(randomWord)):
             if randomWord[i] == guess:
                 shieldWord = shieldWord[:i] + guess + shieldWord[i + 1:]
@@ -34,6 +36,7 @@ while True:
         print("Wrong! That letter is not in the word!")
         print("You lose a life")
         lives -= 1
+        tries += 1
 
         if lives == 0:
             print(hangManPictureSeventh)
@@ -60,3 +63,12 @@ while True:
         elif lives == 5:
             print(hangManPictureSecond)
             print("You have", lives, "life left")
+    
+    if shieldWord == randomWord:
+        print("You win!")
+        print("The word was", randomWord)
+        print("It took you", tries, "tries")
+        break
+
+print("Thanks for playing!")
+time.sleep(2)
