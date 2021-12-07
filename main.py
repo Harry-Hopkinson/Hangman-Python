@@ -9,7 +9,6 @@ randomWord = random.choice(file.readlines())
 lives = 6
 shieldWord = ""
 tries = 0
-combinedGuess = []
 
 for i in range(len(randomWord) - 1):
     shieldWord += "*"
@@ -28,23 +27,23 @@ while True:
     print(shieldWord)
     print("Guess a letter:")
     guess = input()
+    tries += 1
 
-    if combinedGuess == randomWord:
+    if "*" not in shieldWord:
         print("You win!")
         print("The word was", randomWord)
         print("It took you", tries, "tries")
         break
 
-    if guess in randomWord:
+    elif guess in randomWord:
         print("Correct!")
-        combinedGuess.append(guess)
         tries += 1
         for i in range(len(randomWord)):
             if randomWord[i] == guess:
                 shieldWord = shieldWord[:i] + guess + shieldWord[i + 1:]
         print(shieldWord)
     
-    elif guess in combinedGuess:
+    elif guess in shieldWord:
         print("You already guessed that letter!")
         tries += 1
         print(shieldWord)
