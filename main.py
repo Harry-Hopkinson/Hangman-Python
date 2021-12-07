@@ -20,14 +20,8 @@ for line in hangManPictureStart:
 
 print("Welcome to Hangman!")
 print("The word has", len(randomWord) - 1, "letters")
-print(randomWord)
 
 while True:
-    print("-----------------------------------------------------")
-    print(shieldWord)
-    print("Guess a letter:")
-    guess = input()
-    tries += 1
 
     if "*" not in shieldWord:
         print("You win!")
@@ -35,7 +29,13 @@ while True:
         print("It took you", tries, "tries")
         break
 
-    elif guess in randomWord:
+    print("-----------------------------------------------------")
+    print(shieldWord)
+    print("Guess a letter:")
+    guess = input()
+    tries += 1
+
+    if guess in randomWord:
         print("Correct!")
         tries += 1
         for i in range(len(randomWord)):
@@ -88,5 +88,6 @@ while True:
                 print(line)
             print("You have", lives, "life left")
 
+print("-----------------------------------------------------")
 print("Thanks for playing!")
 time.sleep(2)
