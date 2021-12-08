@@ -26,7 +26,7 @@ while True:
     if "*" not in shieldWord:
         print("You win!")
         print("The word was", randomWord)
-        print("It took you", tries, "tries")
+        print("It took you", str(int(tries / 2)) + " tries")
         break
 
     print("-----------------------------------------------------")
